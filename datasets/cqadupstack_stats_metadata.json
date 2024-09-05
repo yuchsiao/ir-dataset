@@ -1,0 +1,41 @@
+{
+    "dataset_name": "cqadupstack_stats",
+    "num_queries": 652,
+    "num_documents": 42269,
+    "num_positive_annotations": 913,
+    "model_name": "msmarco-distilbert-base-tas-b",
+    "top_k": 500,
+    "include_text": false,
+    "ndcg": {
+        "NDCG@1": 0.21472,
+        "NDCG@3": 0.25047,
+        "NDCG@5": 0.26541,
+        "NDCG@10": 0.28087,
+        "NDCG@100": 0.3257,
+        "NDCG@1000": 0.35193
+    },
+    "mean_ap": {
+        "MAP@1": 0.19406,
+        "MAP@3": 0.2328,
+        "MAP@5": 0.24224,
+        "MAP@10": 0.24876,
+        "MAP@100": 0.25718,
+        "MAP@1000": 0.25809
+    },
+    "recall": {
+        "Recall@1": 0.19406,
+        "Recall@3": 0.27353,
+        "Recall@5": 0.31155,
+        "Recall@10": 0.359,
+        "Recall@100": 0.56812,
+        "Recall@1000": 0.76816
+    },
+    "precision": {
+        "P@1": 0.21472,
+        "P@3": 0.10685,
+        "P@5": 0.07423,
+        "P@10": 0.0434,
+        "P@100": 0.00713,
+        "P@1000": 0.001
+    }
+}

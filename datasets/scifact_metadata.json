@@ -1,0 +1,41 @@
+{
+    "dataset_name": "scifact",
+    "num_queries": 300,
+    "num_documents": 5183,
+    "num_positive_annotations": 339,
+    "model_name": "msmarco-distilbert-base-tas-b",
+    "top_k": 500,
+    "include_text": false,
+    "ndcg": {
+        "NDCG@1": 0.53333,
+        "NDCG@3": 0.59905,
+        "NDCG@5": 0.6215,
+        "NDCG@10": 0.64276,
+        "NDCG@100": 0.66983,
+        "NDCG@1000": 0.68106
+    },
+    "mean_ap": {
+        "MAP@1": 0.50861,
+        "MAP@3": 0.573,
+        "MAP@5": 0.58919,
+        "MAP@10": 0.59916,
+        "MAP@100": 0.60459,
+        "MAP@1000": 0.60493
+    },
+    "recall": {
+        "Recall@1": 0.50861,
+        "Recall@3": 0.64733,
+        "Recall@5": 0.69978,
+        "Recall@10": 0.7615,
+        "Recall@100": 0.891,
+        "Recall@1000": 0.98333
+    },
+    "precision": {
+        "P@1": 0.53333,
+        "P@3": 0.23222,
+        "P@5": 0.156,
+        "P@10": 0.08633,
+        "P@100": 0.01013,
+        "P@1000": 0.00111
+    }
+}

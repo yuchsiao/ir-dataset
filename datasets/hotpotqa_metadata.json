@@ -1,0 +1,41 @@
+{
+    "dataset_name": "hotpotqa",
+    "num_queries": 7405,
+    "num_documents": 5233329,
+    "num_positive_annotations": 14810,
+    "model_name": "msmarco-distilbert-base-tas-b",
+    "top_k": 500,
+    "include_text": false,
+    "ndcg": {
+        "NDCG@1": 0.69885,
+        "NDCG@3": 0.53981,
+        "NDCG@5": 0.56334,
+        "NDCG@10": 0.58413,
+        "NDCG@100": 0.61623,
+        "NDCG@1000": 0.63147
+    },
+    "mean_ap": {
+        "MAP@1": 0.34943,
+        "MAP@3": 0.46135,
+        "MAP@5": 0.47874,
+        "MAP@10": 0.49027,
+        "MAP@100": 0.49897,
+        "MAP@1000": 0.49973
+    },
+    "recall": {
+        "Recall@1": 0.34943,
+        "Recall@3": 0.50257,
+        "Recall@5": 0.54916,
+        "Recall@10": 0.60135,
+        "Recall@100": 0.72762,
+        "Recall@1000": 0.82849
+    },
+    "precision": {
+        "P@1": 0.69885,
+        "P@3": 0.33504,
+        "P@5": 0.21966,
+        "P@10": 0.12027,
+        "P@100": 0.01455,
+        "P@1000": 0.00166
+    }
+}

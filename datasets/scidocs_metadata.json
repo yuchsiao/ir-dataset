@@ -1,0 +1,41 @@
+{
+    "dataset_name": "scidocs",
+    "num_queries": 1000,
+    "num_documents": 25657,
+    "num_positive_annotations": 29928,
+    "model_name": "msmarco-distilbert-base-tas-b",
+    "top_k": 500,
+    "include_text": false,
+    "ndcg": {
+        "NDCG@1": 0.188,
+        "NDCG@3": 0.14598,
+        "NDCG@5": 0.12472,
+        "NDCG@10": 0.14859,
+        "NDCG@100": 0.21063,
+        "NDCG@1000": 0.25835
+    },
+    "mean_ap": {
+        "MAP@1": 0.03823,
+        "MAP@3": 0.06519,
+        "MAP@5": 0.07494,
+        "MAP@10": 0.08543,
+        "MAP@100": 0.10013,
+        "MAP@1000": 0.10248
+    },
+    "recall": {
+        "Recall@1": 0.03823,
+        "Recall@3": 0.08187,
+        "Recall@5": 0.10822,
+        "Recall@10": 0.15185,
+        "Recall@100": 0.33462,
+        "Recall@1000": 0.56763
+    },
+    "precision": {
+        "P@1": 0.188,
+        "P@3": 0.13433,
+        "P@5": 0.1064,
+        "P@10": 0.0748,
+        "P@100": 0.01646,
+        "P@1000": 0.0028
+    }
+}

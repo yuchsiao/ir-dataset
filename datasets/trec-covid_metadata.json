@@ -1,0 +1,41 @@
+{
+    "dataset_name": "trec-covid",
+    "num_queries": 50,
+    "num_documents": 171332,
+    "num_positive_annotations": 66336,
+    "model_name": "msmarco-distilbert-base-tas-b",
+    "top_k": 500,
+    "include_text": false,
+    "ndcg": {
+        "NDCG@1": 0.55,
+        "NDCG@3": 0.52173,
+        "NDCG@5": 0.51278,
+        "NDCG@10": 0.48125,
+        "NDCG@100": 0.37087,
+        "NDCG@1000": 0.33844
+    },
+    "mean_ap": {
+        "MAP@1": 0.00169,
+        "MAP@3": 0.00381,
+        "MAP@5": 0.00595,
+        "MAP@10": 0.01025,
+        "MAP@100": 0.05287,
+        "MAP@1000": 0.13475
+    },
+    "recall": {
+        "Recall@1": 0.00169,
+        "Recall@3": 0.00411,
+        "Recall@5": 0.00682,
+        "Recall@10": 0.01255,
+        "Recall@100": 0.08563,
+        "Recall@1000": 0.3219
+    },
+    "precision": {
+        "P@1": 0.62,
+        "P@3": 0.55333,
+        "P@5": 0.556,
+        "P@10": 0.514,
+        "P@100": 0.3868,
+        "P@1000": 0.16268
+    }
+}

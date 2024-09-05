@@ -1,0 +1,41 @@
+{
+    "dataset_name": "cqadupstack_gaming",
+    "num_queries": 1595,
+    "num_documents": 45301,
+    "num_positive_annotations": 2263,
+    "model_name": "msmarco-distilbert-base-tas-b",
+    "top_k": 500,
+    "include_text": false,
+    "ndcg": {
+        "NDCG@1": 0.38558,
+        "NDCG@3": 0.45055,
+        "NDCG@5": 0.47283,
+        "NDCG@10": 0.49846,
+        "NDCG@100": 0.53929,
+        "NDCG@1000": 0.55578
+    },
+    "mean_ap": {
+        "MAP@1": 0.33853,
+        "MAP@3": 0.41811,
+        "MAP@5": 0.43313,
+        "MAP@10": 0.44521,
+        "MAP@100": 0.4549,
+        "MAP@1000": 0.4556
+    },
+    "recall": {
+        "Recall@1": 0.33853,
+        "Recall@3": 0.49449,
+        "Recall@5": 0.54988,
+        "Recall@10": 0.6249,
+        "Recall@100": 0.80322,
+        "Recall@1000": 0.92404
+    },
+    "precision": {
+        "P@1": 0.38558,
+        "P@3": 0.19958,
+        "P@5": 0.13618,
+        "P@10": 0.07956,
+        "P@100": 0.01088,
+        "P@1000": 0.00129
+    }
+}

@@ -1,0 +1,41 @@
+{
+    "dataset_name": "fever",
+    "num_queries": 6666,
+    "num_documents": 5416568,
+    "num_positive_annotations": 7937,
+    "model_name": "msmarco-distilbert-base-tas-b",
+    "top_k": 500,
+    "include_text": false,
+    "ndcg": {
+        "NDCG@1": 0.54665,
+        "NDCG@3": 0.65457,
+        "NDCG@5": 0.68097,
+        "NDCG@10": 0.6997,
+        "NDCG@100": 0.71882,
+        "NDCG@1000": 0.72255
+    },
+    "mean_ap": {
+        "MAP@1": 0.50827,
+        "MAP@3": 0.61242,
+        "MAP@5": 0.62803,
+        "MAP@10": 0.63631,
+        "MAP@100": 0.64085,
+        "MAP@1000": 0.64103
+    },
+    "recall": {
+        "Recall@1": 0.50827,
+        "Recall@3": 0.73444,
+        "Recall@5": 0.79843,
+        "Recall@10": 0.85478,
+        "Recall@100": 0.93709,
+        "Recall@1000": 0.96251
+    },
+    "precision": {
+        "P@1": 0.54665,
+        "P@3": 0.26593,
+        "P@5": 0.17393,
+        "P@10": 0.09356,
+        "P@100": 0.01043,
+        "P@1000": 0.00109
+    }
+}
