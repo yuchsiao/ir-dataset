@@ -1,0 +1,41 @@
+{
+    "dataset_name": "cqadupstack_physics",
+    "num_queries": 1039,
+    "num_documents": 38316,
+    "num_positive_annotations": 1933,
+    "model_name": "msmarco-distilbert-base-tas-b",
+    "top_k": 500,
+    "include_text": false,
+    "ndcg": {
+        "NDCG@1": 0.28296,
+        "NDCG@3": 0.32583,
+        "NDCG@5": 0.34863,
+        "NDCG@10": 0.37192,
+        "NDCG@100": 0.42826,
+        "NDCG@1000": 0.45282
+    },
+    "mean_ap": {
+        "MAP@1": 0.24035,
+        "MAP@3": 0.29468,
+        "MAP@5": 0.30931,
+        "MAP@10": 0.3202,
+        "MAP@100": 0.33231,
+        "MAP@1000": 0.33355
+    },
+    "recall": {
+        "Recall@1": 0.24035,
+        "Recall@3": 0.3549,
+        "Recall@5": 0.4111,
+        "Recall@10": 0.47983,
+        "Recall@100": 0.72373,
+        "Recall@1000": 0.88798
+    },
+    "precision": {
+        "P@1": 0.28296,
+        "P@3": 0.15111,
+        "P@5": 0.10837,
+        "P@10": 0.0667,
+        "P@100": 0.01126,
+        "P@1000": 0.00152
+    }
+}

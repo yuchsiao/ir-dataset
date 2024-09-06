@@ -1,0 +1,41 @@
+{
+    "dataset_name": "arguana",
+    "num_queries": 1406,
+    "num_documents": 8674,
+    "num_positive_annotations": 1406,
+    "model_name": "msmarco-distilbert-base-tas-b",
+    "top_k": 500,
+    "include_text": false,
+    "ndcg": {
+        "NDCG@1": 0.19915,
+        "NDCG@3": 0.31702,
+        "NDCG@5": 0.36434,
+        "NDCG@10": 0.427,
+        "NDCG@100": 0.4789,
+        "NDCG@1000": 0.48601
+    },
+    "mean_ap": {
+        "MAP@1": 0.19915,
+        "MAP@3": 0.2871,
+        "MAP@5": 0.31328,
+        "MAP@10": 0.33946,
+        "MAP@100": 0.35126,
+        "MAP@1000": 0.35159
+    },
+    "recall": {
+        "Recall@1": 0.19915,
+        "Recall@3": 0.40398,
+        "Recall@5": 0.5192,
+        "Recall@10": 0.71124,
+        "Recall@100": 0.94168,
+        "Recall@1000": 0.99431
+    },
+    "precision": {
+        "P@1": 0.19915,
+        "P@3": 0.13466,
+        "P@5": 0.10384,
+        "P@10": 0.07112,
+        "P@100": 0.00942,
+        "P@1000": 0.00099
+    }
+}

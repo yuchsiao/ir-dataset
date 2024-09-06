@@ -1,0 +1,41 @@
+{
+    "dataset_name": "nq",
+    "num_queries": 3452,
+    "num_documents": 2681468,
+    "num_positive_annotations": 4201,
+    "model_name": "msmarco-distilbert-base-tas-b",
+    "top_k": 500,
+    "include_text": false,
+    "ndcg": {
+        "NDCG@1": 0.27144,
+        "NDCG@3": 0.38131,
+        "NDCG@5": 0.42307,
+        "NDCG@10": 0.46295,
+        "NDCG@100": 0.51541,
+        "NDCG@1000": 0.52493
+    },
+    "mean_ap": {
+        "MAP@1": 0.24177,
+        "MAP@3": 0.34388,
+        "MAP@5": 0.36868,
+        "MAP@10": 0.38699,
+        "MAP@100": 0.39894,
+        "MAP@1000": 0.39936
+    },
+    "recall": {
+        "Recall@1": 0.24177,
+        "Recall@3": 0.46109,
+        "Recall@5": 0.55704,
+        "Recall@10": 0.67258,
+        "Recall@100": 0.90295,
+        "Recall@1000": 0.97318
+    },
+    "precision": {
+        "P@1": 0.27144,
+        "P@3": 0.17777,
+        "P@5": 0.13065,
+        "P@10": 0.07992,
+        "P@100": 0.01092,
+        "P@1000": 0.00118
+    }
+}

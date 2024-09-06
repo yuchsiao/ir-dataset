@@ -1,0 +1,41 @@
+{
+    "dataset_name": "cqadupstack_android",
+    "num_queries": 699,
+    "num_documents": 22998,
+    "num_positive_annotations": 1696,
+    "model_name": "msmarco-distilbert-base-tas-b",
+    "top_k": 500,
+    "include_text": false,
+    "ndcg": {
+        "NDCG@1": 0.33619,
+        "NDCG@3": 0.36322,
+        "NDCG@5": 0.37877,
+        "NDCG@10": 0.40407,
+        "NDCG@100": 0.45253,
+        "NDCG@1000": 0.48069
+    },
+    "mean_ap": {
+        "MAP@1": 0.2733,
+        "MAP@3": 0.32494,
+        "MAP@5": 0.33855,
+        "MAP@10": 0.35143,
+        "MAP@100": 0.36325,
+        "MAP@1000": 0.36474
+    },
+    "recall": {
+        "Recall@1": 0.2733,
+        "Recall@3": 0.37784,
+        "Recall@5": 0.42493,
+        "Recall@10": 0.50276,
+        "Recall@100": 0.71459,
+        "Recall@1000": 0.90192
+    },
+    "precision": {
+        "P@1": 0.33619,
+        "P@3": 0.17072,
+        "P@5": 0.12074,
+        "P@10": 0.07525,
+        "P@100": 0.0124,
+        "P@1000": 0.00179
+    }
+}

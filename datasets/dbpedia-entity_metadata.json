@@ -1,0 +1,41 @@
+{
+    "dataset_name": "dbpedia-entity",
+    "num_queries": 400,
+    "num_documents": 4635922,
+    "num_positive_annotations": 43515,
+    "model_name": "msmarco-distilbert-base-tas-b",
+    "top_k": 500,
+    "include_text": false,
+    "ndcg": {
+        "NDCG@1": 0.4825,
+        "NDCG@3": 0.41853,
+        "NDCG@5": 0.39733,
+        "NDCG@10": 0.38423,
+        "NDCG@100": 0.43039,
+        "NDCG@1000": 0.50552
+    },
+    "mean_ap": {
+        "MAP@1": 0.07389,
+        "MAP@3": 0.12539,
+        "MAP@5": 0.14749,
+        "MAP@10": 0.17843,
+        "MAP@100": 0.25648,
+        "MAP@1000": 0.27317
+    },
+    "recall": {
+        "Recall@1": 0.07389,
+        "Recall@3": 0.14167,
+        "Recall@5": 0.17847,
+        "Recall@10": 0.23607,
+        "Recall@100": 0.49861,
+        "Recall@1000": 0.73878
+    },
+    "precision": {
+        "P@1": 0.5875,
+        "P@3": 0.45833,
+        "P@5": 0.396,
+        "P@10": 0.31575,
+        "P@100": 0.10228,
+        "P@1000": 0.02133
+    }
+}

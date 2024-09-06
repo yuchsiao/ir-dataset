@@ -1,0 +1,41 @@
+{
+    "dataset_name": "cqadupstack_gis",
+    "num_queries": 885,
+    "num_documents": 37637,
+    "num_positive_annotations": 1114,
+    "model_name": "msmarco-distilbert-base-tas-b",
+    "top_k": 500,
+    "include_text": false,
+    "ndcg": {
+        "NDCG@1": 0.21695,
+        "NDCG@3": 0.2506,
+        "NDCG@5": 0.27016,
+        "NDCG@10": 0.29627,
+        "NDCG@100": 0.34246,
+        "NDCG@1000": 0.36963
+    },
+    "mean_ap": {
+        "MAP@1": 0.20107,
+        "MAP@3": 0.23641,
+        "MAP@5": 0.24755,
+        "MAP@10": 0.25856,
+        "MAP@100": 0.26747,
+        "MAP@1000": 0.26846
+    },
+    "recall": {
+        "Recall@1": 0.20107,
+        "Recall@3": 0.27437,
+        "Recall@5": 0.32174,
+        "Recall@10": 0.40022,
+        "Recall@100": 0.6161,
+        "Recall@1000": 0.82644
+    },
+    "precision": {
+        "P@1": 0.21695,
+        "P@3": 0.10245,
+        "P@5": 0.07322,
+        "P@10": 0.04565,
+        "P@100": 0.00724,
+        "P@1000": 0.00099
+    }
+}

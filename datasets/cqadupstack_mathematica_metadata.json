@@ -1,0 +1,41 @@
+{
+    "dataset_name": "cqadupstack_mathematica",
+    "num_queries": 804,
+    "num_documents": 16705,
+    "num_positive_annotations": 1358,
+    "model_name": "msmarco-distilbert-base-tas-b",
+    "top_k": 500,
+    "include_text": false,
+    "ndcg": {
+        "NDCG@1": 0.14801,
+        "NDCG@3": 0.17203,
+        "NDCG@5": 0.18895,
+        "NDCG@10": 0.20937,
+        "NDCG@100": 0.26465,
+        "NDCG@1000": 0.2981
+    },
+    "mean_ap": {
+        "MAP@1": 0.11784,
+        "MAP@3": 0.15179,
+        "MAP@5": 0.16172,
+        "MAP@10": 0.17086,
+        "MAP@100": 0.18194,
+        "MAP@1000": 0.18321
+    },
+    "recall": {
+        "Recall@1": 0.11784,
+        "Recall@3": 0.19114,
+        "Recall@5": 0.23239,
+        "Recall@10": 0.29103,
+        "Recall@100": 0.53636,
+        "Recall@1000": 0.78043
+    },
+    "precision": {
+        "P@1": 0.14801,
+        "P@3": 0.0825,
+        "P@5": 0.06144,
+        "P@10": 0.0393,
+        "P@100": 0.00771,
+        "P@1000": 0.0012
+    }
+}
