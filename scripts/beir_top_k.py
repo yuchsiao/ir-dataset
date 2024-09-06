@@ -12,7 +12,6 @@ import dataclasses
 import json
 import logging
 import os
-import pathlib
 
 logging.basicConfig(format="%(asctime)s - %(message)s",
                     datefmt="%Y-%m-%d %H:%M:%S",
