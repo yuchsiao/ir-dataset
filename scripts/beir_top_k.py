@@ -144,7 +144,7 @@ def get_top_k_data_frame(q_doc_sim, top_k, corpus, queries, qrels, include_text=
         data.update({
             "query": q_texts,
             "title": title_texts,
-            "corpus": doc_texts,
+            "document": doc_texts,
         })
     return pd.DataFrame(data)    
 
