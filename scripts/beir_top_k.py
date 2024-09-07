@@ -1,3 +1,11 @@
+import argparse
+import dataclasses
+import json
+import logging
+import os
+
+import pandas as pd
+
 from beir import LoggingHandler
 from beir import util
 from beir.datasets.data_loader import GenericDataLoader
@@ -5,13 +13,6 @@ from beir.retrieval.search.dense import DenseRetrievalExactSearch as DRES
 from beir.retrieval.evaluation import EvaluateRetrieval
 from beir.retrieval import models
 
-import pandas as pd
-
-import argparse
-import dataclasses
-import json
-import logging
-import os
 
 logging.basicConfig(format="%(asctime)s - %(message)s",
                     datefmt="%Y-%m-%d %H:%M:%S",
@@ -20,24 +21,28 @@ logging.basicConfig(format="%(asctime)s - %(message)s",
 
 
 def get_args():
-    parser = argparse.ArgumentParser(description="Compute top k similar documents for BEIR datasets.")
+    """Return command line args."""
+    parser = argparse.ArgumentParser(
+        description="Compute top k similar documents for BEIR datasets.",
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument("--dataset", type=str, default=None,
-                        help="Dataset to use (default: None for all datasets in BEIR with commercial compatible licenses)")
+                        help="Dataset to use. If not given, all datasets in BEIR with commercial compatible licenses.")
     parser.add_argument("--datasets_dir", type=str, default="..",
-                        help="Datasets directory (default: Parent folder. 'datasets' would be created")
+                        help="Datasets directory.")
     parser.add_argument("--model_name", type=str, default="msmarco-distilbert-base-tas-b",
-                        help="Model name (default: msmarco-distilbert-base-tas-b)")
+                        help="Model name")
     parser.add_argument("--batch_size", type=int, default=1024,
-                        help="Batch size for model inference (default: 1024)")
+                        help="Batch size for model inference")
     parser.add_argument("--top_k", type=int, default=500,
-                        help="Top K similar documents (default: 500)")
+                        help="Top K similar documents")
     parser.add_argument("--include_text", action="store_true",
-                        help="Include query, title, document text for each qid, docid pair (default: False)")
+                        help="Include query, title, document text for each qid, docid pair")
     return parser.parse_args()
 
 
 @dataclasses.dataclass
 class BeirTopKSimilarityMetadata:
+    """Metadata to be stored side by side with the output file."""
     dataset_name: str
     num_queries: int
     num_documents: int
@@ -66,14 +71,15 @@ class BeirTopKSimilarityMetadata:
         self.precision = precision
 
 
-def download_data(dataset_name: str, datasets_path: str = "..") -> str:
-    url = "https://public.ukp.informatik.tu-darmstadt.de/thakur/BEIR/datasets/{}.zip".format(dataset_name)
-    out_dir = os.path.join("..", "datasets")
-    data_path = util.download_and_unzip(url, out_dir)
+def download_data(dataset_name: str, datasets_path: str = os.path.join("..", "datasets")) -> str:
+    """Download dataset from BEIR official site."""
+    url = f"https://public.ukp.informatik.tu-darmstadt.de/thakur/BEIR/datasets/{dataset_name}.zip"
+    data_path = util.download_and_unzip(url, datasets_path)
     return data_path
 
 
-def load_data(data_path):
+def load_data(data_path: str):
+    """Load dataset by path using BEIR utility function, assuming the folder containing corpus.json, qrels/, queries.jsonl."""
     corpus, queries, qrels = GenericDataLoader(data_folder=data_path).load(split="test")
     return corpus, queries, qrels
 
@@ -81,6 +87,7 @@ def load_data(data_path):
 def compute_similarity(
         model_name, batch_size, corpus, queries, qrels, score_function=None
         ) -> tuple[dict[str, dict[str, float]], dict[str, float], dict[str, float], dict[str, float], dict[str, float]]:
+    """Compute embedding similarity between queries and corpus by score_function using model_name by batch_size."""
     if score_function is None:
         score_function = "dot"
     if score_function not in ("dot", "cos_sim"):
@@ -95,10 +102,12 @@ def compute_similarity(
 
 
 def get_top_k_similar_docs(doc_sim: dict[str, float], k: int) -> dict[str, float]:
+    """For a dict of docids to similarity scores, get top-k docs with highest similarity scores."""
     return dict(sorted(doc_sim.items(), key=lambda x: x[1], reverse=True)[:k])
 
 
 def get_labels_similarities(query, top_k_similar_docs, qrels):
+    """"""
     labels = {}
     similarity_scores = {}
     for doc, similarity_score in top_k_similar_docs.items():
