@@ -64,6 +64,8 @@ class BeirTopKSimilarityMetadata:
         self.dataset_name = dataset_name
         self.num_queries = len(queries)
         self.num_documents = len(corpus)
+        # TODO: Bug here: this only counts lines in qrels/text.tsv. But some task does record
+        # negative annotations.
         self.num_positive_annotations = sum(len(rel_docids) for qid, rel_docids in qrels.items())
         self.model_name = model_name
         self.top_k = top_k
