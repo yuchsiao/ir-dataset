@@ -122,6 +122,7 @@ def get_labels_similarities(query: str, top_k_similar_docs: dict[str, float],
     """For each similar doc, get its relevance label and the corresponding similar score."""
     labels = {}
     similarity_scores = {}
+    # TODO(yuchsiao): relevance score assignment is incorrect. Fix it.
     for doc, similarity_score in top_k_similar_docs.items():
         if doc in qrels[query] and qrels[query][doc] == 1:
             labels[doc] = 1
