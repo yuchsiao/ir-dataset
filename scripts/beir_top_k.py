@@ -1,3 +1,5 @@
+"""Compute top-k similar query-doc pairs for each BEIR task to pandas DataFrame."""
+
 import argparse
 import dataclasses
 import json
@@ -26,7 +28,8 @@ def get_args():
         description="Compute top k similar documents for BEIR datasets.",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument("--dataset", type=str, default=None,
-                        help="Dataset to use. If not given, all datasets in BEIR with commercial compatible licenses.")
+                        help="Dataset to use. If not given, all datasets in BEIR with commercial "
+                        "compatible licenses.")
     parser.add_argument("--datasets_dir", type=str, default="..",
                         help="Datasets directory.")
     parser.add_argument("--model_name", type=str, default="msmarco-distilbert-base-tas-b",
@@ -79,24 +82,30 @@ def download_data(dataset_name: str, datasets_path: str = os.path.join("..", "da
 
 
 def load_data(data_path: str):
-    """Load dataset by path using BEIR utility function, assuming the folder containing corpus.json, qrels/, queries.jsonl."""
+    """Load dataset by path using BEIR utility function, assuming the folder containing corpus.json,
+    qrels/, queries.jsonl."""
     corpus, queries, qrels = GenericDataLoader(data_folder=data_path).load(split="test")
     return corpus, queries, qrels
 
 
 def compute_similarity(
         model_name, batch_size, corpus, queries, qrels, score_function=None
-        ) -> tuple[dict[str, dict[str, float]], dict[str, float], dict[str, float], dict[str, float], dict[str, float]]:
-    """Compute embedding similarity between queries and corpus by score_function using model_name by batch_size."""
+        ) -> tuple[dict[str, dict[str, float]], dict[str, float], dict[str, float], 
+                   dict[str, float], dict[str, float]]:
+    """Compute embedding similarity between queries and corpus by score_function using model_name by
+    batch_size."""
     if score_function is None:
         score_function = "dot"
     if score_function not in ("dot", "cos_sim"):
-        raise ValueError(f"score_function must be either 'dot' or 'cos_sim'. Received: '{score_function}'")
+        raise ValueError("score_function must be either 'dot' or 'cos_sim'. Received: "
+                         f"'{score_function}'")
 
-    model = DRES(models.SentenceBERT(model_name, trust_remote_code=True), batch_size=batch_size, trust_remote_code=True)
+    model = DRES(models.SentenceBERT(model_name, trust_remote_code=True), batch_size=batch_size,
+                 trust_remote_code=True)
     retriever = EvaluateRetrieval(model, score_function=score_function)
     q_doc_sim = retriever.retrieve(corpus, queries)
-    ndcg, mean_avg_prec, recall, precision = retriever.evaluate(qrels, q_doc_sim, retriever.k_values)
+    ndcg, mean_avg_prec, recall, precision = retriever.evaluate(
+        qrels, q_doc_sim, retriever.k_values)
 
     return q_doc_sim, ndcg, mean_avg_prec, recall, precision
 
@@ -106,8 +115,9 @@ def get_top_k_similar_docs(doc_sim: dict[str, float], k: int) -> dict[str, float
     return dict(sorted(doc_sim.items(), key=lambda x: x[1], reverse=True)[:k])
 
 
-def get_labels_similarities(query, top_k_similar_docs, qrels):
-    """"""
+def get_labels_similarities(query: str, top_k_similar_docs: dict[str, float], 
+                            qrels: dict[str, dict[str, int]]):
+    """For each similar doc, get its relevance label and the corresponding similar score."""
     labels = {}
     similarity_scores = {}
     for doc, similarity_score in top_k_similar_docs.items():
@@ -117,9 +127,11 @@ def get_labels_similarities(query, top_k_similar_docs, qrels):
             labels[doc] = 0
         similarity_scores[doc] = similarity_score
     return labels, similarity_scores
-        
 
-def get_top_k_data_frame(q_doc_sim, top_k, corpus, queries, qrels, include_text=False):
+
+def get_top_k_data_frame(q_doc_sim: dict[str, dict[str, float]], top_k: int, corpus, queries, qrels,
+                        include_text: bool = False):
+    """Turn arguments into a DataFrame"""
     qids = []
     docids = []
     rels = []
@@ -128,8 +140,8 @@ def get_top_k_data_frame(q_doc_sim, top_k, corpus, queries, qrels, include_text=
         q_texts = []
         title_texts = []
         doc_texts = []
-    
-    for qid, doc_sim in q_doc_sim.items():
+
+    for qid in q_doc_sim:
         top_k_doc_scores = get_top_k_similar_docs(q_doc_sim[qid], top_k)
         docid_labels, similarities = get_labels_similarities(qid, top_k_doc_scores, qrels)
         for docid, rel in docid_labels.items():
@@ -147,17 +159,18 @@ def get_top_k_data_frame(q_doc_sim, top_k, corpus, queries, qrels, include_text=
         "rel": rels,
         "sim": sims,
     }
-    
+
     if include_text:
         data.update({
             "query": q_texts,
             "title": title_texts,
             "document": doc_texts,
         })
-    return pd.DataFrame(data)    
+    return pd.DataFrame(data)   
 
 
 def main(args):
+    """Main function of the script."""
     datasets = [
         "trec-covid",
         "nq",
@@ -177,7 +190,8 @@ def main(args):
     include_text = args.include_text
 
     def process_sub_dataset(dataset_name: str, data_path: str, dirname: str = ""):
-        """Process dataset_name_{dirname} under folder data_path/dirname. Return silently if no needed files found."""
+        """Process dataset_name_{dirname} under folder data_path/dirname. Return silently if no "
+        "needed files found."""
         output_path = data_path
         if dirname:
             output_path = data_path + "_" + dirname
@@ -187,11 +201,12 @@ def main(args):
         if tuple(sorted(os.listdir(data_path))) != ("corpus.jsonl", "qrels", "queries.jsonl"):
             return
 
-        logging.info(f"## Process {data_path}.")
+        logging.info("## Process %s.", data_path)
         corpus, queries, qrels = load_data(data_path)
         # Compute similarity scores.
         logging.info("## Compute similarity scores.")
-        q_doc_sim, ndcg, mean_ap, recall, precision = compute_similarity(model_name, batch_size, corpus, queries, qrels)    
+        q_doc_sim, ndcg, mean_ap, recall, precision = compute_similarity(
+            model_name, batch_size, corpus, queries, qrels)    
         # Get DF.
         logging.info("## Get the dataframe.")
         df = get_top_k_data_frame(q_doc_sim, top_k, corpus, queries, qrels, include_text)
@@ -202,7 +217,7 @@ def main(args):
         # Write to files
         logging.info("## Write to files.")
         df.to_csv(output_path + ".tsv", sep="\t", index=False)
-        with open(output_path + "_metadata.json", "w") as fout:
+        with open(output_path + "_metadata.json", "w", encoding="utf-8") as fout:
             json.dump(dataclasses.asdict(metadata), fout, indent=4)
 
     def process_dataset(dataset_name):
@@ -218,17 +233,16 @@ def main(args):
             if not os.path.isdir(os.path.join(data_path, dirname)):
                 continue
             process_sub_dataset(dataset_name, data_path, dirname)
-    
+
     if dataset_name is None:
         for dataset_idx, dataset_name in enumerate(datasets):
-            logging.info(f"#### DATASET {dataset_idx}: {dataset_name}")
+            logging.info("#### DATASET %d: %s", dataset_idx, dataset_name)
             process_dataset(dataset_name)
     else:
         # Only process the specified dataset.
-        logging.info(f"#### DATASET: {dataset_name}")
+        logging.info("#### DATASET: %s", dataset_name)
         process_dataset(dataset_name)
 
 
 if __name__ == "__main__":
-    args = get_args()
-    main(args)
+    main(get_args())
