@@ -1,0 +1,5 @@
+[MESSAGES CONTROL]
+disable=
+    too-many-instance-attributes,
+    too-many-arguments,
+    too-many-locals
