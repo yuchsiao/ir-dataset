@@ -2,7 +2,7 @@
     "dataset_name": "scidocs",
     "num_queries": 1000,
     "num_documents": 25657,
-    "num_positive_annotations": 29928,
+    "num_positive_annotations": 4928,
     "model_name": "msmarco-distilbert-base-tas-b",
     "top_k": 500,
     "include_text": false,
